@@ -20,52 +20,55 @@ function TodoApp() {
   const [todos, setTodos] = useState([]);
   /** add a new todo to list */
   function create(newTodo) {
-    let newTodo = {...newTodo, id:uuid()};
+    newTodo = { ...newTodo, id: uuid() };
     setTodos(todos => [...todos, newTodo]);
   }
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
-    let updatedTodoIdx = todos.indexOf(t => t.id === updatedTodo.id);
-    todos[updatedTodoIdx] = updatedTodo;
+    console.log("updatedTodo", updatedTodo);
+    let matchedTodo = todos.find(t => t.id === updatedTodo.id);
+    for (let key in matchedTodo) {
+      matchedTodo[key] = updatedTodo[key];
+    }
     setTodos(todos => [...todos]);
   }
 
   /** delete a todo by id */
-  function remove(id) {
-    setTodos(todos.filter(t => t.id !== id));
+  function remove(todo) {
+    setTodos(todos.filter(t => t.id !== todo.id));
   }
 
   return (
-      <main className="TodoApp">
-        <div className="row">
+    <main className="TodoApp">
+      <div className="row">
 
-          <div className="col-md-6">
-            {todos.length !== 0 &&
-            <EditableTodoList /> }
-            {todos.length === 0 &&
+        <div className="col-md-6">
+          {todos.length !== 0 &&
+            <EditableTodoList update={update} remove={remove} todos={todos} />}
+          {todos.length === 0 &&
             <span className="text-muted">You have no todos.</span>
-            }
-          </div>
+          }
+        </div>
 
-          
-          <div className="col-md-6">
 
-            {todos.length !== 0 &&
-              <section className="mb-4">
-                <h3>Top Todo</h3>
-                <TopTodo />
-              </section>}
+        <div className="col-md-6">
 
-            <section>
-              <h3 className="mb-3">Add Nü</h3>
-              <TodoForm handleSave={create} />
-            </section>
-            
-          </div>
+          {todos.length !== 0 &&
+            <section className="mb-4">
+              <h3>Top Todo</h3>
+              <TopTodo todos={todos} />
+            </section>}
+
+          <section>
+            <h3 className="mb-3">Add Nü</h3>
+            <TodoForm handleSave={create} />
+          </section>
 
         </div>
-      </main>
+
+      </div>
+    </main>
   );
 }
 

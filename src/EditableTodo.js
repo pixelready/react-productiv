@@ -15,8 +15,8 @@ import TodoForm from "./TodoForm";
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo({todo, update, remove}) {
-  const[isEditing, setIsEditing] = useState(false);
+function EditableTodo({ todo, update, remove }) {
+  const [isEditing, setIsEditing] = useState(false);
 
   /** Toggle if this is being edited */
   function toggleEdit() {
@@ -35,35 +35,35 @@ function EditableTodo({todo, update, remove}) {
   }
 
   return (
-      <div className="EditableTodo">
+    <div className="EditableTodo">
 
-        {isEditing && <TodoForm
-                        initialFormData={todo}
-                        handleSave={handleSave}/>}
+      {isEditing && <TodoForm
+        initialFormData={todo}
+        handleSave={handleSave} />}
 
-        {!isEditing &&
-          <div className="mb-3">
-            <div className="float-end text-sm-end">
-              <button
-                  className="EditableTodo-toggle btn-link btn btn-sm"
-                  onClick={toggleEdit}>
-                Edit
-              </button>
-              <button
-                  className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-                  onClick={handleDelete}>
-                Del
-              </button>
-            </div>
-            <Todo
-              title={todo.title}
-              description={todo.description}
-              priority={todo.priority}
-              id={todo.id}/>
+      {!isEditing &&
+        <div className="mb-3">
+          <div className="float-end text-sm-end">
+            <button
+              className="EditableTodo-toggle btn-link btn btn-sm"
+              onClick={toggleEdit}>
+              Edit
+            </button>
+            <button
+              className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+              onClick={handleDelete}>
+              Del
+            </button>
           </div>
-        }
+          <Todo
+            title={todo.title}
+            description={todo.description}
+            priority={todo.priority}
+            id={todo.id} />
+        </div>
+      }
 
-      </div>
+    </div>
   );
 }
 
