@@ -20,18 +20,20 @@ function TodoApp() {
   const [todos, setTodos] = useState([]);
   /** add a new todo to list */
   function create(newTodo) {
-    //TODO
-    
+    let newTodo = {...newTodo, id:uuid()};
+    setTodos(todos => [...todos, newTodo]);
   }
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
-    //TODO
+    let updatedTodoIdx = todos.indexOf(t => t.id === updatedTodo.id);
+    todos[updatedTodoIdx] = updatedTodo;
+    setTodos(todos => [...todos]);
   }
 
   /** delete a todo by id */
   function remove(id) {
-    //TODO
+    setTodos(todos.filter(t => t.id !== id));
   }
 
   return (
