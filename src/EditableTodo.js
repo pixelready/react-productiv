@@ -37,11 +37,11 @@ function EditableTodo({todo, update, remove}) {
   return (
       <div className="EditableTodo">
 
-        {todo.isEditing && <TodoForm
+        {isEditing && <TodoForm
                         initialFormData={todo}
                         handleSave={handleSave}/>}
 
-        {!todo.isEditing &&
+        {!isEditing &&
           <div className="mb-3">
             <div className="float-end text-sm-end">
               <button
