@@ -16,8 +16,8 @@ import EditableTodoList from "./EditableTodoList";
  * App -> TodoApp -> { TodoForm, EditableTodoList }
  */
 
-function TodoApp() {
-  const [todos, setTodos] = useState([]);
+function TodoApp({initialTodos}) {
+  const [todos, setTodos] = useState(initialTodos);
   /** add a new todo to list */
   function create(newTodo) {
     newTodo = { ...newTodo, id: uuid() };
@@ -27,6 +27,7 @@ function TodoApp() {
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
     console.log("updatedTodo", updatedTodo);
+    //map -> check todo, return same or updated if match
     let matchedTodo = todos.find(t => t.id === updatedTodo.id);
     for (let key in matchedTodo) {
       matchedTodo[key] = updatedTodo[key];
@@ -35,6 +36,7 @@ function TodoApp() {
   }
 
   /** delete a todo by id */
+  //change this back to just ID
   function remove(todo) {
     setTodos(todos.filter(t => t.id !== todo.id));
   }

@@ -18,7 +18,7 @@ function TodoForm({ initialFormData, handleSave }) {
   const emptyFormData = {
     title: "",
     description: "",
-    priority: 3
+    priority: 1
   }
   const [formData, setFormData] = useState((initialFormData || emptyFormData));
 
